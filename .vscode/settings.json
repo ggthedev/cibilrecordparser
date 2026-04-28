@@ -1,0 +1,39 @@
+{
+  // Pin the Python interpreter to the project-local virtualenv so VS Code,
+  // Cursor, Windsurf, Code-OSS, etc. all pick the same env on open.
+  // NOTE: use a RELATIVE path here. The newer "Python Environments"
+  // extension does not expand ${workspaceFolder} in this setting and
+  // throws "could not resolve interpreter path" if you use it.
+  "python.defaultInterpreterPath": ".venv/bin/python",
+
+  // Help the Python extension's venv auto-discovery find this folder.
+  "python.venvPath": ".",
+  "python.venvFolders": [".venv"],
+
+  // Auto-activate the venv in any new integrated terminal.
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+
+  // Make Pylance / Pyright resolve packages installed in the venv.
+  "python.analysis.extraPaths": [
+    ".venv/lib/python3.13/site-packages"
+  ],
+
+  // Keep the venv out of search results and the file watcher.
+  "files.exclude": {
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
+  "search.exclude": {
+    "**/.venv": true,
+    "**/__pycache__": true
+  },
+  "files.watcherExclude": {
+    "**/.venv/**": true,
+    "**/__pycache__/**": true
+  },
+  "cursorpyright.analysis.extraPaths": [
+    ".venv/lib/python3.13/site-packages"
+  ]
+}

@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Browser-UI background-mode runtime state (created by `make web start`,
+# removed by `make web stop`).
+.web.pid
+.web.log
+
+# Regeneratable intermediates (decoded HTML, text corpus, extracted JSON).
+# Safe to delete anytime via `make clean-cache`.
+cache/
+
+# Timestamped final outputs (json/yaml/verification.txt).
+# Comment this line out if you want to commit a verified snapshot.
+output/

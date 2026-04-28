@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>CIBIL Viewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="h-screen overflow-hidden bg-slate-50 text-slate-900 antialiased">
+
+  <header class="border-b border-slate-200 bg-white">
+    <div class="px-6 h-14 flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+        <h1 class="text-base font-semibold tracking-tight">CIBIL Viewer</h1>
+      </div>
+
+      <div class="hidden md:flex items-baseline gap-3 pl-4 border-l border-slate-200">
+        <span id="consumer" class="text-sm font-medium text-slate-700"></span>
+        <span id="report-date" class="text-xs text-slate-500 tabular-nums"></span>
+      </div>
+
+      <div class="flex-1"></div>
+
+      <div class="relative">
+        <input id="search" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Search accounts, enquiries, contacts, emails..."
+               class="w-80 pl-9 pr-3 py-1.5 text-sm bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-300 focus:bg-white">
+        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+      </div>
+
+      <select id="file-select"
+              class="px-2 py-1.5 text-xs font-mono border border-slate-200 rounded-md bg-white max-w-xs"
+              title="Switch between report snapshots in output/">
+      </select>
+
+      <span id="score-badge" class="hidden inline-flex items-baseline gap-2 pl-3 pr-3.5 py-1 rounded-full bg-slate-900 text-white">
+        <span class="text-[10px] uppercase tracking-widest opacity-60">CIBIL</span>
+        <span id="score-value" class="text-sm font-bold tabular-nums"></span>
+      </span>
+    </div>
+  </header>
+
+  <div class="flex h-[calc(100vh-3.5rem)]">
+    <nav id="sidebar" class="w-56 shrink-0 border-r border-slate-200 bg-white py-3 overflow-y-auto">
+      <ul class="space-y-0.5 px-2">
+        <li><button data-section="summary"        class="nav-btn">Summary</button></li>
+        <li><button data-section="personal"       class="nav-btn">Personal</button></li>
+        <li><button data-section="accounts"       class="nav-btn">Accounts <span data-count="accounts" class="nav-count"></span></button></li>
+        <li><button data-section="enquiries"      class="nav-btn">Enquiries <span data-count="enquiries" class="nav-count"></span></button></li>
+        <li><button data-section="addresses"      class="nav-btn">Addresses <span data-count="addresses" class="nav-count"></span></button></li>
+        <li><button data-section="contacts"       class="nav-btn">Contacts <span data-count="contacts" class="nav-count"></span></button></li>
+        <li><button data-section="emails"         class="nav-btn">Emails <span data-count="emails" class="nav-count"></span></button></li>
+        <li><button data-section="identification" class="nav-btn">Identification <span data-count="identification" class="nav-count"></span></button></li>
+      </ul>
+
+      <div class="px-4 mt-6 pt-4 border-t border-slate-200">
+        <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Source</p>
+        <p id="source-info" class="mt-1 text-xs text-slate-500 break-words font-mono"></p>
+      </div>
+    </nav>
+
+    <main id="content" class="flex-1 overflow-y-auto px-8 py-6">
+      <div class="text-sm text-slate-500">Loading…</div>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
