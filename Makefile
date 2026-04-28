@@ -33,7 +33,7 @@ WEB_ACTION := $(firstword $(filter start stop status restart,$(MAKECMDGOALS)))
 
 .DEFAULT_GOAL := run
 
-.PHONY: help install run file query web sample demo clean-cache clean-output clean distclean
+.PHONY: help install run file query web clean-cache clean-output clean distclean
 
 # Make the action keywords valid no-op goals, but ONLY when `web` is also a
 # goal -- so `make start` alone still errors out (start is not a target).
